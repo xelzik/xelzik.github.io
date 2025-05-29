@@ -11,15 +11,16 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: black;
             margin: 0;
+            color: white;
         }
         #container {
             text-align: center;
-            background: white;
+            background: rgba(0, 0, 0, 0.8);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
         #question {
             font-size: 1.5em;
@@ -33,6 +34,13 @@
             padding: 10px 20px;
             font-size: 1em;
             cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -108,19 +116,4 @@
             timeLeft = 20;
             document.getElementById('timer').textContent = timeLeft;
             clearInterval(timerInterval);
-            timerInterval = setInterval(updateTimer, 1000);
-        }
-
-        function updateTimer() {
-            if (timeLeft > 0) {
-                timeLeft--;
-                document.getElementById('timer').textContent = timeLeft;
-            } else {
-                clearInterval(timerInterval);
-                document.getElementById('question').textContent = 'Время вышло!';
-                document.getElementById('alarm').play();
-            }
-        }
-    </script>
-</body>
-</html>
+            timerInterval =
