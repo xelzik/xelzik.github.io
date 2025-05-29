@@ -49,7 +49,7 @@
         <div id="question">Нажми кнопку, чтобы получить вопрос.</div>
         <div id="timer"></div>
         <button onclick="startGame()">Начать игру</button>
-        <audio id="alarm" src="https://www.soundjay.com/button/beep-07.wav"></audio> 
+        <audio id="alarm" src="gong.mp3" preload="auto"></audio>
     </div>
 
     <script>
@@ -110,10 +110,36 @@
 
         let timerInterval;
         let timeLeft = 20;
+        const alarm = document.getElementById('alarm');
 
         function startGame() {
             document.getElementById('question').textContent = 'Назови 3 вещи ' + questions[Math.floor(Math.random() * questions.length)] + '...';
             timeLeft = 20;
             document.getElementById('timer').textContent = timeLeft;
             clearInterval(timerInterval);
-            timerInterval =
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                document.getElementById('timer').textContent = timeLeft;
+            } else {
+                clearInterval(timerInterval);
+                document.getElementById('question').textContent = 'Время вышло!';
+                playAlarm();
+            }
+        }
+
+        function playAlarm() {
+            if (alarm.readyState === 4) { // 4 означает, что аудио загружено
+                alarm.play().catch(error => {
+                    console.error('Ошибка воспроизведения звука:', error);
+                });
+            } else {
+                console.log('Аудио ещё не загружено');
+            }
+        }
+    </script>
+</body>
+</html>
