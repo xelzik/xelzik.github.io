@@ -140,6 +140,15 @@
                 console.log('Аудио ещё не загружено');
             }
         }
+
+        // Проверка поддержки автовоспроизведения звука
+        document.addEventListener('click', () => {
+            alarm.play().then(() => {
+                console.log('Звук успешно воспроизведён');
+            }).catch(error => {
+                console.error('Ошибка воспроизведения звука:', error);
+            });
+        }, { once: true });
     </script>
 </body>
 </html>
